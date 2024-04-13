@@ -1,0 +1,81 @@
+<main class="container">
+    <h1>Contact List</h1>
+    <div id="welcomeMessage" style="display:none;"></div>
+
+    <div class="row">
+        <div class="col">
+
+            <button id="addButton" class="btn btn-primary btn-sm mb-1">
+                <i class="fas fa-plus fa-sm"> Add Contact</i>
+            </button>
+
+            <table class="table table-striped table-boarded table-hover">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col" class="text-center">#</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Contact Number</th>
+                    <th scope="col">Email</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody id="contactList"></tbody>
+            </table>
+        </div>
+        <div class="col-lg-4 col-md-4">
+            <a data="statistics" class="btn btn-primary"><i class="fa-solid fa-chart-line"></i> Show Statistics</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <div class="chart-container">
+        <canvas id="visitorChart"></canvas>
+        <script>
+            // Get the canvas context
+            const ctx = document.getElementById('visitorChart').getContext('2d');
+
+            // Use AJAX to fetch visitor data from the JSON file
+            fetch('./data/happyfamilies.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Create the bar chart with the retrieved data
+                    createVisitorChart(data.months, data.visitors);
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+
+            // Function to create the visitor chart
+            function createVisitorChart(labels, data) {
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Happy Families Last Year', // Label for the dataset
+                            data: data, // Data points
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)', // Background color
+                            borderColor: 'rgba(54, 162, 235, 1)', // Border color
+                            borderWidth: 2 // Border width
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true // Start y-axis at zero
+                            }
+                        }
+                    }
+                });
+            }
+        </script>
+    </div>
+</main>
+
+<!--<a data="eventsplanning" class="btn btn-primary"><i class="fa-regular fa-calendar-days"></i> Events Planning Page</a>-->

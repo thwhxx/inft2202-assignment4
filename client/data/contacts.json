@@ -1,0 +1,22 @@
+{
+  "contacts" : [
+
+    {
+      "FullName" : "Bilbo Baggins",
+      "ContactNumber" : "416-555-5555",
+      "EmailAddress" : "bbaggins@example.com"
+    },
+
+    {
+      "FullName" : "Hermione Granger",
+      "ContactNumber" : "905-444-4444",
+      "EmailAddress" : "grangerhermi@example.com"
+    },
+
+    {
+      "FullName" : "Admin",
+      "ContactNumber" : "647-777-7777",
+      "EmailAddress" : "admin@example.com"
+    }
+  ]
+}

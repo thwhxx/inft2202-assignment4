@@ -1,0 +1,34 @@
+<main class="container mt-4"> <!-- Add margin-top to create space between menu and images -->
+    <h1>Portfolio</h1>
+    <div class="row row-cols-1 row-cols-md-2 g-4" id="card-template">
+
+    </div>
+
+    <div class="btn-container" id="loadMoreBtn">
+        <div style="text-align: center;">
+            <button class="btn btn-primary">Load More</button>
+        </div>
+    </div>
+
+    <script>
+        let btn = document.getElementById('loadMoreBtn');
+        let currentImg = 2;
+
+        btn.addEventListener('click', function() {
+            //  Increments the index to show next image
+            currentImg+=2;
+
+            // Show images using the nth-child selector
+            let visibleImages = document.querySelectorAll('.service1:nth-child(-n+' + currentImg + ')');
+            visibleImages.forEach(function(image) {
+                image.style.display = 'block';
+            });
+
+            // Hides the load button after loading all the images
+            if (currentImg >= document.querySelectorAll('.service1').length) {
+                btn.style.display = 'none';
+            }
+        });
+    </script>
+
+</main>
